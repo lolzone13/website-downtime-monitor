@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/lolzone13/website-downtime-monitor#readme",
   "dependencies": {
+    "axios": "^0.24.0",
+    "bree": "^7.1.0",
     "colors": "^1.4.0",
     "concurrently": "^6.4.0",
     "dotenv": "^10.0.0",
