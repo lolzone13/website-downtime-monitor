@@ -1,0 +1,27 @@
+{
+  "name": "website-downtime-monitor",
+  "version": "1.0.0",
+  "description": "backend for the downtime monitor",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lolzone13/website-downtime-monitor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lolzone13/website-downtime-monitor/issues"
+  },
+  "homepage": "https://github.com/lolzone13/website-downtime-monitor#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "concurrently": "^6.4.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.2",
+    "morgan": "^1.10.0"
+  }
+}

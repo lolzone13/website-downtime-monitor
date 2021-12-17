@@ -3,7 +3,7 @@ import React from 'react'
 function WebsiteStatus() {
     return (
         <div>
-            Website-name status
+            Website-name: status
         </div>
     )
 }
