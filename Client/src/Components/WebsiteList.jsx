@@ -6,7 +6,7 @@ function WebsiteCards() {
         <div>
             <WebsiteStatus />
             <WebsiteStatus />
-            <WebsiteStatus />            
+            <WebsiteStatus />
         </div>
     )
 }
