@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import WebsiteStatus from './WebsiteStatus'
+import { GlobalContext } from '../Context/GlobalState';
+
 
 function WebsiteCards() {
+
+    // get from global context and place the cards
+    const { websites } = useContext(GlobalContext);
+    console.log(websites);
+
     return (
-        <div>
-            <WebsiteStatus />
-            <WebsiteStatus />
-            <WebsiteStatus />
-        </div>
+        <ul>
+
+            {websites.map(website => (<WebsiteStatus key={website.id} website={website}/>))}
+
+        </ul>
     )
 }
 

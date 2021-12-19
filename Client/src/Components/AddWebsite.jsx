@@ -16,13 +16,13 @@ function AddWebsite() {
             <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="text">Text</label>
-                    <input type="text" placeholder="Enter Website Name..." />
+                    <input type="text" value={websiteName} onChange={(eve) => setWebsiteName(eve.target.value)} placeholder="Enter Website Name..." />
                 </div>
                 <div>
                     <label htmlFor="url" >
                         Enter the URL for your website or API
                     </label >
-                    <input type="url"  placeholder="Enter url..." />
+                    <input type="url" value={url} onChange={(eve) => setURL(eve.target.value)} placeholder="Enter url..." />
                 </div>
                 <button> Add Website </button>
             </form>
