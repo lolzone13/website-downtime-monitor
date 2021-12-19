@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../Context/GlobalState';
 
 function AddWebsite() {
 
     const [ websiteName, setWebsiteName ] = useState("");
     const [url, setURL ] = useState('');
+    const { addWebsite }  = useContext(GlobalContext);
 
     function onSubmit(event) {
         event.preventDefault();
+
+        const newWebsite = {
+            id: Math.floor(Math.random() * 100000000),// use uiud 
+            name: websiteName,
+            url: url,
+            status: 'Up'
+        }
+
+        addWebsite(newWebsite);
     }
 
 

@@ -1,5 +1,5 @@
 export default (state, action) => {
-    console.log(state);
+    // console.log(state);
     switch (action.type) {
         case 'GET_WEBSITES':
             return {
@@ -9,7 +9,7 @@ export default (state, action) => {
         case 'DELETE_WEBSITE':
             return {
                 ...state,
-                websites: state.websites.filter(transaction => transaction._id !== action.payload)
+                websites: state.websites.filter(website => website.id !== action.payload)
             }
         case 'ADD_WEBSITE':
             return {

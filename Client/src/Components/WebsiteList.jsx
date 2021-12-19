@@ -7,14 +7,14 @@ function WebsiteCards() {
 
     // get from global context and place the cards
     const { websites } = useContext(GlobalContext);
-    console.log(websites);
+
 
     return (
-        <ul>
-
-            {websites.map(website => (<WebsiteStatus key={website.id} website={website}/>))}
-
-        </ul>
+        <div>
+            <ul>
+                {websites.map(website => (<WebsiteStatus key={website.id} website={website} />))}
+            </ul>
+        </div>
     )
 }
 
