@@ -3,11 +3,7 @@ import AppReducer from './AppReducer.js'
 import axios from 'axios';
 
 const initialState = {
-    websites: [
-        {id: 1, name: 'Spotify', url: 'https://www.spotify.com/', status: 'Up'},
-        {id: 2, name: 'Google', url: 'https://www.google.co.in/', status: 'Up'},
-        {id: 3, name: 'Youtube', url: 'https://www.youtube.com/', status: 'Up'}
-    ],
+    websites: [],
     error: null,
     loading: true
 
@@ -20,6 +16,27 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     // actions
+    async function getWebsites() {
+        try {
+            console.log("Hello");
+            const response = await axios.get('/api/websites');
+            
+
+            dispatch({
+                type: 'GET_WEBSITES',
+                payload: response.data.data
+            })            
+
+        } catch (error) {
+            dispatch({
+                type: 'WEBSITES_ERROR',
+                payload: error.response.data.error
+
+            })            
+        }
+    }
+
+
     function addWebsite(website) {
         dispatch({
             type: 'ADD_WEBSITE',
@@ -37,6 +54,9 @@ export const GlobalProvider = ({ children }) => {
 
     return (<GlobalContext.Provider value={{
         websites: state.websites,
+        error: state.error,
+        loading: state.loading,
+        getWebsites,
         addWebsite,
         deleteWebsite
     }}>
