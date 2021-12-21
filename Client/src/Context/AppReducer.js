@@ -9,7 +9,7 @@ export default (state, action) => {
         case 'DELETE_WEBSITE':
             return {
                 ...state,
-                websites: state.websites.filter(website => website.id !== action.payload)
+                websites: state.websites.filter(website => website._id !== action.payload)
             }
         case 'ADD_WEBSITE':
             return {

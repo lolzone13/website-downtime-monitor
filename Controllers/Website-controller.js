@@ -1,4 +1,3 @@
-const { findByIdAndDelete } = require('../models/database-models');
 const Websites = require('../models/database-models');
 
 
@@ -51,7 +50,7 @@ exports.deleteWebsite = async (req, res, next) => {
             })
         }       
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             error: error
         });        
@@ -74,7 +73,7 @@ exports.postWebsite = async (req, res, next) => {
         })
        
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             error: error
         });        

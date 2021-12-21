@@ -18,39 +18,65 @@ export const GlobalProvider = ({ children }) => {
     // actions
     async function getWebsites() {
         try {
-            console.log("Hello");
-            const response = await axios.get('/api/websites');
             
-
+            const response = await axios.get('/api/websites');
             dispatch({
                 type: 'GET_WEBSITES',
                 payload: response.data.data
-            })            
+            })
 
         } catch (error) {
             dispatch({
                 type: 'WEBSITES_ERROR',
                 payload: error.response.data.error
 
-            })            
+            })
         }
     }
 
 
-    function addWebsite(website) {
-        dispatch({
-            type: 'ADD_WEBSITE',
-            payload: website
-        })
+    async function addWebsite(website) {
+        
+        const config = {
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }
+        try {
+            
+            const response = await axios.post('/api/websites', website, config);
+            dispatch({
+                type: 'ADD_WEBSITE',
+                payload: response.data.data
+            })
+
+        } catch (err) {
+            dispatch({
+                type: 'WEBSITES_ERROR',
+                payload: err.response.data.error
+            })
+        }
+
     }
 
-    function deleteWebsite(id) {
-        dispatch({
-            type: 'DELETE_WEBSITE',
-            payload: id
-        })
+    async function deleteWebsite(id) {
+        try {
+            await axios.delete(`/api/websites/${id}`);
+            dispatch({
+                type: 'DELETE_WEBSITE',
+                payload: id
+            });
 
+        } catch (error) {
+            dispatch({
+                type: 'WEBSITES_ERROR',
+                payload: error.response.data.error
+
+            })
+        }
     }
+
+
 
     return (<GlobalContext.Provider value={{
         websites: state.websites,

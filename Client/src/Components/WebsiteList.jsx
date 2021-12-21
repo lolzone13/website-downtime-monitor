@@ -3,7 +3,7 @@ import WebsiteStatus from './WebsiteStatus'
 import { GlobalContext } from '../Context/GlobalState';
 
 
-function WebsiteCards() {
+function WebsiteList() {
 
 
     const { websites, getWebsites } = useContext(GlobalContext);
@@ -11,15 +11,16 @@ function WebsiteCards() {
 
     useEffect(() => {
         getWebsites();
+        // eslint-disable-next-line
     } ,[]);
 
     return (
         <div>
             <ul>
-                {websites.map(website => (<WebsiteStatus key={website.id} website={website} />))}
+                {websites.map(website => (<WebsiteStatus key={website._id} website={website} />))}
             </ul>
         </div>
     )
 }
 
-export default WebsiteCards;
+export default WebsiteList;
