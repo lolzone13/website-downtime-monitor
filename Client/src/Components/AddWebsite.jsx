@@ -18,6 +18,10 @@ function AddWebsite() {
         }
 
         addWebsite(newWebsite);
+
+        setWebsiteName('');
+        setURL('');
+        
     }
 
 
