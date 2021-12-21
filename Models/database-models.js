@@ -28,6 +28,10 @@ websiteSchema.path('url').validate((val) => {
     return urlRegex.test(val);
 }, 'Invalid URL.');
 
+websiteSchema.path('status').validate((val) => {
+    statusRegex = /(Up|Down)/;
+    return statusRegex.test(val);
+}, 'Invalid Status');
 
 
 module.exports = mongoose.model('Website', websiteSchema);
