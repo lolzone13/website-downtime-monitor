@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getWebsites, deleteWebsite, postWebsite } = require('../Controllers/Website-controller');
+const { getWebsites, deleteWebsite, postWebsite, updateWebsite } = require('../Controllers/Website-controller');
 
 router
     .route('/')
@@ -15,7 +15,9 @@ router
     .route('/')
     .post(postWebsite);
 
-
+router
+    .route('/:id')
+    .patch(updateWebsite);
 
 
 

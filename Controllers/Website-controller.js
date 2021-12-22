@@ -79,3 +79,34 @@ exports.postWebsite = async (req, res, next) => {
         });        
     }
 }
+
+exports.updateWebsite = async (req, res, next) => {
+    try {
+        const website = await Websites.findById(req.params.id);
+        if (!website) {
+            return res.status(404).json({
+                success: false,
+                error: 'Website not found!'
+            });
+        }
+
+        else {
+            // console.log(website);
+            await Websites.findByIdUpdate(req.params.id, { status: 'Down' }, (err, docs) => {
+                if (err) console.log(err);
+                else console.log(`Updated Details ${docs}`);
+            });
+
+            return res.status(200).json({
+                success: true,
+                data: {}
+            })
+        }
+    }
+    catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: error
+        });        
+    }
+}
