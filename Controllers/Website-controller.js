@@ -59,7 +59,7 @@ exports.deleteWebsite = async (req, res, next) => {
 
 /*
     @desc     Add a new website to the database
-    @routes   DELETE /api/websites
+    @routes   DELETE /api/websites/:id
     @access   all (no auth for now)
 */
 exports.postWebsite = async (req, res, next) => {
@@ -91,11 +91,14 @@ exports.updateWebsite = async (req, res, next) => {
         }
 
         else {
-            // console.log(website);
-            await Websites.findByIdUpdate(req.params.id, { status: 'Down' }, (err, docs) => {
-                if (err) console.log(err);
-                else console.log(`Updated Details ${docs}`);
-            });
+            
+            let newStatus = '';
+
+            if (website.status === 'Up') newStatus = 'Down';
+            else newStatus = 'Up';
+
+
+            await Websites.findByIdAndUpdate(req.params.id, { status: newStatus })
 
             return res.status(200).json({
                 success: true,

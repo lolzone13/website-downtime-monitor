@@ -17,7 +17,7 @@ router
 
 router
     .route('/:id')
-    .patch(updateWebsite);
+    .put(updateWebsite);
 
 
 
