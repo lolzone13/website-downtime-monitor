@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './index.css';
 import Header from './Components/Header';
 import StatusBar from './Components/StatusBar';
 import WebsiteList from './Components/WebsiteList';

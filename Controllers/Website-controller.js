@@ -79,7 +79,11 @@ exports.postWebsite = async (req, res, next) => {
         });        
     }
 }
-
+/*
+    @desc     Updates website status
+    @routes   PUT /api/websites/:id
+    @access   all (no auth for now)
+*/
 exports.updateWebsite = async (req, res, next) => {
     try {
         const website = await Websites.findById(req.params.id);
