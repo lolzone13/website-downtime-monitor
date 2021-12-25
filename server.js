@@ -33,7 +33,7 @@ const bree = new Bree({
     jobs: [        
         {
             name : 'WebsiteGet',
-            interval : '20s'
+            interval : '60s'
         }
     ]
 });

@@ -8,6 +8,9 @@ import AddWebsite from './Components/AddWebsite';
 import { GlobalProvider } from './Context/GlobalState';
 // src https://status.uptimerobot.com/
 function App() {
+  window.setTimeout(function () {
+    window.location.reload();
+  }, 900000);
   return (
     <div>
       <GlobalProvider>

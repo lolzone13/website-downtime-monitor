@@ -9,15 +9,30 @@ dotenv.config({ path: '../config/config.env' });
 async function getWebsiteData(data) {
     try {
         for(let i = 0; i < data.length; i++) {
-            const res = await axios.get(data[i].url);
-            console.log(res);
-            let newStatus = (res.status === 200) ? 'Up' : 'Down';
-            console.log(data[i].name, newStatus);
-            if (data[i].status !== newStatus) {
-                const statusResponse = await axios.put(process.env.URL + '/api/websites' + '/' + data[i]._id);
+            axios.get(data[i].url)
+            .then(async (res) => {
+                let newStatus = 'Up';
 
-                if (statusResponse.success === false) console.log(statusResponse.error);
-            }
+            
+                if (data[i].status !== newStatus) {
+                    const statusResponse = await axios.put(process.env.URL + '/api/websites' + '/' + data[i]._id);
+    
+                    if (statusResponse.success === false) console.log(statusResponse.error);
+                }
+            }).catch(async (err) => {
+                if (err.response) {
+                    let newStatus = 'Down';
+
+                    if (data[i].status !== newStatus) {
+                        const statusResponse = await axios.put(process.env.URL + '/api/websites' + '/' + data[i]._id);
+        
+                        if (statusResponse.success === false) console.log(statusResponse.error);
+                    }
+                }
+            });
+           
+            
+
 
         }
     } catch (error) {
