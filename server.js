@@ -8,7 +8,6 @@ const Bree = require('bree');
 const connectDB = require('./config/db');
 
 
-
 dotenv.config({ path: './config/config.env' });
 
 
@@ -30,15 +29,15 @@ const websites = require('./Routes/Websites.js');
 app.use('/api/websites', websites);
 
 
-// const bree = new Bree({
-//     jobs: [        
-//         {
-//             name : 'WebsiteGet',
-//             interval : '900s'
-//         }
-//     ]
-// });
-// bree.start();
+const bree = new Bree({
+    jobs: [        
+        {
+            name : 'WebsiteGet',
+            interval : '20s'
+        }
+    ]
+});
+bree.start();
 
 
 
