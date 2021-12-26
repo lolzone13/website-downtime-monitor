@@ -15,7 +15,6 @@ function App() {
       <GlobalProvider>
         <Header />
         <StatusBar />
-        <div style={{ fontSize: "20px" }}>Overall Uptime</div>
         <br />
         <WebsiteList />
         <AddWebsite />

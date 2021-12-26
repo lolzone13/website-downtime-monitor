@@ -3,9 +3,9 @@ import { GlobalContext } from '../Context/GlobalState';
 
 function AddWebsite() {
 
-    const [ websiteName, setWebsiteName ] = useState("");
-    const [url, setURL ] = useState('');
-    const { addWebsite }  = useContext(GlobalContext);
+    const [websiteName, setWebsiteName] = useState("");
+    const [url, setURL] = useState('');
+    const { addWebsite } = useContext(GlobalContext);
 
     function onSubmit(event) {
         event.preventDefault();
@@ -21,25 +21,27 @@ function AddWebsite() {
 
         setWebsiteName('');
         setURL('');
-        
+
     }
 
 
     return (
         <div>
-            <h3>Add new website to monitor</h3>
+            <h3 className='m-5 text-3xl font-bold'>Add a new website to monitor</h3>
             <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="text">Text</label>
-                    <input type="text" value={websiteName} onChange={(eve) => setWebsiteName(eve.target.value)} placeholder="Enter Website Name..." />
+                <div className='text-justify m-2'>
+                    <label className='text-2xl' htmlFor="text">Website Name</label>
+                    <input className='left-40 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-fit' type="text" value={websiteName} onChange={(eve) => setWebsiteName(eve.target.value)} placeholder="Enter Website Name" />
                 </div>
-                <div>
-                    <label htmlFor="url" >
+                <div className='text-justify m-2'>
+                    <label className='text-2xl' htmlFor="url" >
                         Enter the URL for your website or API
                     </label >
-                    <input type="url" value={url} onChange={(eve) => setURL(eve.target.value)} placeholder="Enter url..." />
+                    <input className='left-20 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-fit' type="url" value={url} onChange={(eve) => setURL(eve.target.value)} placeholder="Enter url" />
                 </div>
-                <button> Add Website </button>
+                <div className='inset-auto'>
+                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded'> Add Website </button>
+                </div>
             </form>
         </div>
     )

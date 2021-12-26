@@ -2,8 +2,8 @@ import React from 'react'
 
 function Header() {
     return (
-        <div>
-            <h1 className='text-3xl font-bold underline'>Website Downtime Monitor</h1>
+        <div className='m-10 text-center'>
+            <h1 className='text-5xl font-bold'>Website Downtime Monitor</h1>
         </div>
     )
 }

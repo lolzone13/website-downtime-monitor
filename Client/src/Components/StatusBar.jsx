@@ -5,8 +5,8 @@ function StatusBar() {
 
     const { websites } = useContext(GlobalContext);
 
-    const working = "All Systems operational  🐱‍🏍";
-    const notWorking = "Some websites may be down (╯°□°）╯︵ ┻━┻";
+    const working = "All systems operational";
+    const notWorking = "Some websites may be down";
     let status = working;
 
     for(let i=0; i<websites.length; i++) {
@@ -18,8 +18,8 @@ function StatusBar() {
     
 
     return (
-        <div>
-            <h2 className='status-bar'> { status } </h2>
+        <div className='text-center'>
+            <h2 className={(status===working) ? 'text-3xl text-green-600' : 'text-3xl-red-600'}> { status } </h2>
         </div>
     )
 }

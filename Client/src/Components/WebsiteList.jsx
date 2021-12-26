@@ -16,7 +16,7 @@ function WebsiteList() {
 
     return (
         <div>
-            <ul>
+            <ul className='w-48 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
                 {websites.map(website => (<WebsiteStatus key={website._id} website={website} />))}
             </ul>
         </div>
