@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const passportLocalMongoose = require("passport-local-mongoose");
 
 
 const websiteSchema = new mongoose.Schema({
@@ -33,5 +33,28 @@ websiteSchema.path('status').validate((val) => {
     return statusRegex.test(val);
 }, 'Invalid Status');
 
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        trim: true,
+        required: [true, 'Enter username'],
+        unique: true
+    },
+    password: {
+        type: String,
+        trim: true,
+        required: [true, 'Enter Password'],
+        unique: true
+    },
+    websites: [{
+        type: websiteSchema
+    }]
+})
 
-module.exports = mongoose.model('Website', websiteSchema);
+userSchema.plugin(passportLocalMongoose);
+
+module.exports = mongoose.models.User || mongoose.model('User', userSchema);
+
+
+module.exports = mongoose.models.Website || mongoose.model('Website', websiteSchema);
+//module.exports = mongoose.model('Website', websiteSchema);
