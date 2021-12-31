@@ -1,4 +1,4 @@
-const Websites = require('../models/database-models');
+const WebsiteModel = require('../models/database-models').Website;
 
 
 /*
@@ -8,7 +8,7 @@ const Websites = require('../models/database-models');
 */
 exports.getWebsites = async (req, res, next) => {
     try {
-        const websiteList = await Websites.find();
+        const websiteList = await WebsiteModel.find();
 
         return res.status(200).json({
             success: true,
@@ -32,7 +32,7 @@ exports.getWebsites = async (req, res, next) => {
 exports.deleteWebsite = async (req, res, next) => {
     try {
  
-        const website = await Websites.findById(req.params.id);
+        const website = await WebsiteModel.findById(req.params.id);
 
         if (!website) {
             return res.status(404).json({
@@ -65,7 +65,7 @@ exports.deleteWebsite = async (req, res, next) => {
 exports.postWebsite = async (req, res, next) => {
     try {
 
-        const websiteData = await Websites.create(req.body);
+        const websiteData = await WebsiteModel.create(req.body);
 
         return res.status(201).json({
             success: true,
@@ -86,7 +86,7 @@ exports.postWebsite = async (req, res, next) => {
 */
 exports.updateWebsite = async (req, res, next) => {
     try {
-        const website = await Websites.findById(req.params.id);
+        const website = await WebsiteModel.findById(req.params.id);
         if (!website) {
             return res.status(404).json({
                 success: false,
@@ -102,7 +102,7 @@ exports.updateWebsite = async (req, res, next) => {
             else newStatus = 'Up';
 
 
-            await Websites.findByIdAndUpdate(req.params.id, { status: newStatus })
+            await WebsiteModel.findByIdAndUpdate(req.params.id, { status: newStatus })
 
             return res.status(200).json({
                 success: true,

@@ -80,7 +80,7 @@ export default function LoginPage() {
 
       </div>
       <div className='grid place-items-center'>
-        <a href='http://localhost:5000/auth/google' target="_blank" rel="noreferrer noopener" className="login-with-google-btn" >
+        <a href='http://localhost:5000/auth/google' className="login-with-google-btn" >
           Sign in with Google
         </a>
       </div>

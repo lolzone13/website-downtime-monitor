@@ -37,24 +37,25 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         trim: true,
-        required: [true, 'Enter username'],
+        required: true,
         unique: true
     },
-    password: {
+    googleID: {
         type: String,
         trim: true,
-        required: [true, 'Enter Password'],
+        required: true,
         unique: true
     },
     websites: [{
-        type: websiteSchema
+        type: websiteSchema,
     }]
 })
 
 userSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.models.User || mongoose.model('User', userSchema);
+module.exports = {
+    Website: mongoose.models.Website || mongoose.model('Website', websiteSchema),
+    User: mongoose.models.User || mongoose.model('User', userSchema)
+}
 
 
-module.exports = mongoose.models.Website || mongoose.model('Website', websiteSchema);
-//module.exports = mongoose.model('Website', websiteSchema);

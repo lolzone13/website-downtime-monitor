@@ -15,7 +15,7 @@ function App() {
     <div>
       <GlobalProvider>
         <Header />
-        <Link to="/login">Login</Link><br />
+        <Link to="/login">Logout</Link><br />
         <StatusBar />
         <br />
         <WebsiteList />

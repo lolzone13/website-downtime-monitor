@@ -20,7 +20,8 @@ exports.logoutGet = async (req, res, next) => {
 
 exports.googleCallback = async (req, res, next) => {
     try {
-        res.send("You reached the callback URI");
+        
+        res.redirect('http://localhost:3000');
     } catch (error) {
         console.log(error);
     }

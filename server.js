@@ -28,23 +28,15 @@ app.use(
         credentials: true,
     })
 );
-// app.use(
-//     session({
-//         secret: "6d49c532a2bc96deec2dc48f1f72c9f6",
-//         resave: true,
-//         saveUninitialized: true,
-//     })
-// );
+app.use(session({
+    secret: process.env.EXPRESS_SESSION_KEY,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge:  24 * 60 * 60 * 1000 }
+  }));
 
-
-// app.use(cookieParser("6d49c532a2bc96deec2dc48f1f72c9f6"));
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-// require("./config/passportConfig")(passport);
-
-
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 // END OF MIDDLEWARE
 
@@ -57,6 +49,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const websites = require('./Routes/Websites.js');
 const login = require('./Routes/Login.js');
+
 
 
 app.use('/api/websites', websites);
