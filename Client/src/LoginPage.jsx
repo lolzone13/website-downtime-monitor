@@ -2,6 +2,13 @@ import React from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid'
 
 export default function LoginPage() {
+  const googleLogin = () => {
+    window.open('http://localhost:5000/auth/google', '_self');
+  }
+
+
+
+
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -80,9 +87,9 @@ export default function LoginPage() {
 
       </div>
       <div className='grid place-items-center'>
-        <a href='http://localhost:5000/auth/google' className="login-with-google-btn" >
+        <button type='button' onClick={googleLogin} className="login-with-google-btn" >
           Sign in with Google
-        </a>
+        </button>
       </div>
     </>
   )

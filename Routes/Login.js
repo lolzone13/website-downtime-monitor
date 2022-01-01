@@ -1,11 +1,7 @@
 const router = require('express').Router();
-const { loginGet, googleCallback, logoutGet } = require('../Controllers/Login-controller');
+const { googleCallback, logoutGet, getUser } = require('../Controllers/Login-controller');
 const passport = require('passport');
 const passportConfig = require('../config/passportConfig')(passport);
-
-router
-    .route('/login')
-    .get(loginGet);
 
 
 router
@@ -17,10 +13,17 @@ router
 // callback route
 router
     .route('/google/callback')
-    .get(passport.authenticate('google'),googleCallback);
+    .get(passport.authenticate('google'), googleCallback);
 
 router
     .route('/logout')
     .get(logoutGet);
+
+router.get('/getUser', (req, res) => {
+    console.log(req.user);
+    res.send(req.user);
+});
+
+
 
 module.exports = router;
