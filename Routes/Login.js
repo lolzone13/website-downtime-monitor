@@ -4,6 +4,16 @@ const passport = require('passport');
 const passportConfig = require('../config/passportConfig')(passport);
 
 
+// auth check
+function loggedIn(req, res, next)  {
+    if (req.isAuthenticated()) next();
+    else {
+        res.send('Unauthenticated');
+    }
+}
+
+
+
 router
     .route('/google')
     .get(passport.authenticate('google', {
@@ -21,6 +31,6 @@ router
 
 router
     .route('/getUser')
-    .get(getUser);
+    .get(loggedIn, getUser);
 
 module.exports = router;

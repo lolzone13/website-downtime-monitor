@@ -74,7 +74,7 @@ exports.postWebsite = async (req, res, next) => {
         newWebsiteList.push(req.body);
 
         await UserModel.findByIdAndUpdate(req.user._id, { websites: newWebsiteList });
-        console.log(userData);
+
         return res.status(201).json({
             success: true,
             data: userData
@@ -94,29 +94,26 @@ exports.postWebsite = async (req, res, next) => {
 */
 exports.updateWebsite = async (req, res, next) => {
     try {
-        const website = await WebsiteModel.findById(req.user._id);
-        if (!website) {
-            return res.status(404).json({
-                success: false,
-                error: 'Website not found!'
-            });
+        let userDetails = await UserModel.find();
+       
+        for(let i = 0; i<userDetails.length; i++) {
+            let websiteData = userDetails[i].websites;
+
+            for(let j = 0; j<websiteData.length; j++) {
+                if (String(websiteData[j]._id) === req.params.id) {
+                    websiteData[j].status = (websiteData[j].status === 'Up') ? 'Down' : 'Up';
+                }
+            }
+  
+            await UserModel.findByIdAndUpdate(userDetails[i]._id, { websites: websiteData });   
         }
 
-        else {
-            
-            let newStatus = '';
-
-            if (website.status === 'Up') newStatus = 'Down';
-            else newStatus = 'Up';
-
-
-            await WebsiteModel.findByIdAndUpdate(req.params.id, { status: newStatus })
-
-            return res.status(200).json({
-                success: true,
-                data: {}
-            })
-        }
+        return res.status(200).json({
+            success: true,
+            data: userDetails
+        })
+        
+        
     }
     catch (error) {
         return res.status(500).json({

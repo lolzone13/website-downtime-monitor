@@ -11,23 +11,31 @@ async function getWebsiteData(data) {
         for(let i = 0; i < data.length; i++) {
             axios.get(data[i].url)
             .then(async (res) => {
+                
                 let newStatus = 'Up';
-
+                console.log(data[i].url, newStatus);
             
                 if (data[i].status !== newStatus) {
+                    console.log(data[i]);
                     const statusResponse = await axios.put(process.env.URL + '/api/websites' + '/' + data[i]._id);
-    
+                    console.log('worked');
                     if (statusResponse.success === false) console.log(statusResponse.error);
                 }
             }).catch(async (err) => {
                 if (err.response) {
                     let newStatus = 'Down';
-
-                    if (data[i].status !== newStatus) {
-                        const statusResponse = await axios.put(process.env.URL + '/api/websites' + '/' + data[i]._id);
-        
-                        if (statusResponse.success === false) console.log(statusResponse.error);
+                    console.log(data[i].url, newStatus);
+                    try {
+                        if (data[i].status !== newStatus) {
+                            console.log(process.env.URL + '/api/websites' + '/update/' + data[i]._id);
+                            const statusResponse = await axios.put(process.env.URL + '/api/websites' + '/update/' + data[i]._id);
+                            
+                            if (statusResponse.success === false) console.log(statusResponse.error);
+                        }
+                    } catch (error) {
+                        //console.log('error');
                     }
+
                 }
             });
            
@@ -45,10 +53,15 @@ async function getURLS(url) {
     const URLs = []
     try {
         const response = await axios.get(url);        
-        const data = response.data.data.websites;
+        const data = response.data.data;
         data.forEach(element => {
-            URLs.push(element)
+            element.websites.forEach(val => {
+                URLs.push(val);
+                //console.log(val);
+            })
+            
         });
+        //console.log("heelo", data);
         
         return URLs;
     } catch (error) {
