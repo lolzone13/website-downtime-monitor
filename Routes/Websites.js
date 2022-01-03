@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getWebsites, deleteWebsite, postWebsite, updateWebsite } = require('../Controllers/Website-controller');
+const { getWebsites, deleteWebsite, postWebsite, updateWebsite, getAllUsers } = require('../Controllers/Website-controller');
 
 router
     .route('/')
@@ -19,7 +19,9 @@ router
     .route('/:id')
     .put(updateWebsite);
 
-
+router
+    .route('/all')
+    .get(getAllUsers)
 
 
 module.exports = router;

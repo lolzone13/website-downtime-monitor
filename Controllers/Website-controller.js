@@ -94,13 +94,62 @@ exports.postWebsite = async (req, res, next) => {
 */
 exports.updateWebsite = async (req, res, next) => {
     try {
-        const userDetails = await UserModel.findById(req.user._id);
+        const website = await WebsiteModel.findById(req.user._id);
+        if (!website) {
+            return res.status(404).json({
+                success: false,
+                error: 'Website not found!'
+            });
+        }
 
+        else {
+            
+            let newStatus = '';
+
+            if (website.status === 'Up') newStatus = 'Down';
+            else newStatus = 'Up';
+
+
+            await WebsiteModel.findByIdAndUpdate(req.params.id, { status: newStatus })
+
+            return res.status(200).json({
+                success: true,
+                data: {}
+            })
+        }
     }
     catch (error) {
         return res.status(500).json({
             success: false,
             error: error
         });        
+    }
+}
+
+
+
+
+/*
+    @desc     Gets all users
+    @routes   GET /api/websites/all
+    @access   all (no auth for now)
+*/
+
+
+exports.getAllUsers = async (req, res, next) => {
+    try {
+        const userDetails = await UserModel.find();
+
+
+        return res.status(200).json({
+            success: true,
+            count: userDetails.length,
+            data: userDetails
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: 'Server Error!'
+        })
     }
 }
