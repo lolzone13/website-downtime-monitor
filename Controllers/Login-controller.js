@@ -13,7 +13,7 @@ exports.logoutGet = async (req, res, next) => {
 
 exports.googleCallback = async (req, res, next) => {
     try {
-        console.log(req.user, "Hello");
+        // console.log(req.user, "Hello");
         if (!req.user) res.redirect('http://localhost:3000/login');
         else res.redirect('http://localhost:3000/home');
     } catch (error) {

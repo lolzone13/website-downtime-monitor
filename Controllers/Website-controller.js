@@ -94,6 +94,7 @@ exports.postWebsite = async (req, res, next) => {
 */
 exports.updateWebsite = async (req, res, next) => {
     try {
+        console.log(req.user, "yo yo")
         let userDetails = await UserModel.find();
        
         for(let i = 0; i<userDetails.length; i++) {

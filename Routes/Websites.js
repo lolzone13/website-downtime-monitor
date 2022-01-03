@@ -18,7 +18,7 @@ router
 
 router
     .route('/update/:id')
-    .put(updateWebsite);
+    .get(updateWebsite);
 
 router
     .route('/all')
