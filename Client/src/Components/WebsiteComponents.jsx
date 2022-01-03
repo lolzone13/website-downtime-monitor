@@ -10,7 +10,7 @@ function WebsiteComponents() {
     const userData = useContext(LoginContext);
 
 
-    //console.log(userData);
+
     if (userData === 'Unauthenticated') {
         return (<div> Unauthorized </div>)
     }

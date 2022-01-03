@@ -26,7 +26,7 @@ module.exports = (passport) => {
 	}, (accessToken, refreshToken, profile, done) => {
 		Userd.findOne({ googleID: profile.id }).then((existingUser) => {
 			if (existingUser) {
-				// console.log('existing user');
+			
 				done(null, existingUser);
 			}
 			else {
@@ -34,7 +34,7 @@ module.exports = (passport) => {
 					username: profile.displayName,
 					googleID: profile.id
 				}).save().then((newUser) => {
-					console.log(`New User created ${newUser}`);
+					
 					done(null, newUser);
 				});
 

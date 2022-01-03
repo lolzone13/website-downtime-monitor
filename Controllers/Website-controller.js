@@ -32,7 +32,7 @@ exports.getWebsites = async (req, res, next) => {
 */
 exports.deleteWebsite = async (req, res, next) => {
     try {
-    
+        
         const userDetails = await UserModel.findById(req.user._id);
         
         const websiteList = userDetails.websites;
@@ -94,6 +94,7 @@ exports.postWebsite = async (req, res, next) => {
 */
 exports.updateWebsite = async (req, res, next) => {
     try {
+        
         let userDetails = await UserModel.find();
        
         for(let i = 0; i<userDetails.length; i++) {

@@ -13,27 +13,27 @@ async function getWebsiteData(data) {
             .then(async (res) => {
                 
                 let newStatus = 'Up';
-                console.log(data[i].url, newStatus);
+               
             
                 if (data[i].status !== newStatus) {
-                    console.log(data[i]);
+                    
                     const statusResponse = await axios.put(process.env.URL + '/api/websites' + '/' + data[i]._id);
-                    console.log('worked');
+                    
                     if (statusResponse.success === false) console.log(statusResponse.error);
                 }
             }).catch(async (err) => {
                 if (err.response) {
                     let newStatus = 'Down';
-                    console.log(data[i].url, newStatus);
+                    
                     try {
                         if (data[i].status !== newStatus) {
-                            console.log(process.env.URL + '/api/websites' + '/update/' + data[i]._id);
+                            
                             const statusResponse = await axios.put(process.env.URL + '/api/websites' + '/update/' + data[i]._id);
                             
                             if (statusResponse.success === false) console.log(statusResponse.error);
                         }
                     } catch (error) {
-                        //console.log('error');
+                        console.log('error');
                     }
 
                 }
@@ -57,11 +57,11 @@ async function getURLS(url) {
         data.forEach(element => {
             element.websites.forEach(val => {
                 URLs.push(val);
-                //console.log(val);
+               
             })
             
         });
-        //console.log("heelo", data);
+        
         
         return URLs;
     } catch (error) {
