@@ -11,7 +11,7 @@ function App() {
 	
 	window.setTimeout(function () {
 		window.location.reload();
-	}, 30000);
+	}, 900000);
 
 
 	return (
