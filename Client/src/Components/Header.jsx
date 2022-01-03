@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
-import { LoginContext } from '../Context/LoginContext'
+import { LoginContext } from '../Context/LoginContext';
+
+
 function Header() {
     const userData = useContext(LoginContext);
     
