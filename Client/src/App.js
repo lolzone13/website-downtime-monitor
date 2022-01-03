@@ -5,7 +5,7 @@ import StatusBar from './Components/StatusBar';
 import WebsiteList from './Components/WebsiteList';
 import AddWebsite from './Components/AddWebsite';
 import { GlobalProvider } from './Context/GlobalState';
-import { LoginContext, LoginProvider } from './Context/LoginContext';
+import { LoginProvider } from './Context/LoginContext';
 
 // src https://status.uptimerobot.com/
 function App() {

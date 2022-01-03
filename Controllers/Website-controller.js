@@ -1,4 +1,5 @@
 const WebsiteModel = require('../models/database-models').Website;
+const UserModel = require('../models/database-models').User;
 
 
 /*
@@ -8,12 +9,12 @@ const WebsiteModel = require('../models/database-models').Website;
 */
 exports.getWebsites = async (req, res, next) => {
     try {
-        const websiteList = await WebsiteModel.find();
-
+        
+        const userDetails = await UserModel.findById(req.user._id);
         return res.status(200).json({
             success: true,
-            count: websiteList.length,
-            data: websiteList
+            count: userDetails.websites.length,
+            data: userDetails.websites
         });
     } catch (error) {
         return res.status(500).json({
@@ -31,10 +32,13 @@ exports.getWebsites = async (req, res, next) => {
 */
 exports.deleteWebsite = async (req, res, next) => {
     try {
- 
-        const website = await WebsiteModel.findById(req.params.id);
+    
+        const userDetails = await UserModel.findById(req.user._id);
+        
+        const websiteList = userDetails.websites;
+        const newWebsiteList = websiteList.filter(item => String(item._id) !== req.params.id);
 
-        if (!website) {
+        if (newWebsiteList.length === websiteList.length) {
             return res.status(404).json({
                 success: false,
                 error: 'Website not found!'
@@ -42,7 +46,7 @@ exports.deleteWebsite = async (req, res, next) => {
         }
 
         else {
-            await website.remove();
+            await UserModel.findByIdAndUpdate(req.user._id, { websites: newWebsiteList });
 
             return res.status(200).json({
                 success: true,
@@ -65,11 +69,15 @@ exports.deleteWebsite = async (req, res, next) => {
 exports.postWebsite = async (req, res, next) => {
     try {
 
-        const websiteData = await WebsiteModel.create(req.body);
+        const userData = await UserModel.findById(req.user._id);
+        let newWebsiteList = userData.websites;
+        newWebsiteList.push(req.body);
 
+        await UserModel.findByIdAndUpdate(req.user._id, { websites: newWebsiteList });
+        console.log(userData);
         return res.status(201).json({
             success: true,
-            data: websiteData
+            data: userData
         })
        
     } catch (error) {
@@ -86,29 +94,8 @@ exports.postWebsite = async (req, res, next) => {
 */
 exports.updateWebsite = async (req, res, next) => {
     try {
-        const website = await WebsiteModel.findById(req.params.id);
-        if (!website) {
-            return res.status(404).json({
-                success: false,
-                error: 'Website not found!'
-            });
-        }
+        const userDetails = await UserModel.findById(req.user._id);
 
-        else {
-            
-            let newStatus = '';
-
-            if (website.status === 'Up') newStatus = 'Down';
-            else newStatus = 'Up';
-
-
-            await WebsiteModel.findByIdAndUpdate(req.params.id, { status: newStatus })
-
-            return res.status(200).json({
-                success: true,
-                data: {}
-            })
-        }
     }
     catch (error) {
         return res.status(500).json({

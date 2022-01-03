@@ -44,7 +44,7 @@ export const GlobalProvider = ({ children }) => {
         }
         try {
             
-            const response = await axios.post('/api/websites', website, config);
+            const response = await axios.put('/api/websites', website, config);
             dispatch({
                 type: 'ADD_WEBSITE',
                 payload: response.data.data
@@ -61,7 +61,7 @@ export const GlobalProvider = ({ children }) => {
 
     async function deleteWebsite(id) {
         try {
-            await axios.delete(`/api/websites/${id}`);
+            await axios.put(`/api/websites/${id}`);
             dispatch({
                 type: 'DELETE_WEBSITE',
                 payload: id

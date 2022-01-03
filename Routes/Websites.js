@@ -9,11 +9,11 @@ router
 
 router
     .route('/:id')
-    .delete(deleteWebsite);
+    .put(deleteWebsite);
 
 router
     .route('/')
-    .post(postWebsite);
+    .put(postWebsite);
 
 router
     .route('/:id')
