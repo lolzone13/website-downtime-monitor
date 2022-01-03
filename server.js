@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
 const Bree = require('bree');
-const { urlencoded } = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -28,6 +27,8 @@ app.use(
         credentials: true,
     })
 );
+
+app.use(cookieParser());
 app.use(session({
     secret: process.env.EXPRESS_SESSION_KEY,
     resave: false,

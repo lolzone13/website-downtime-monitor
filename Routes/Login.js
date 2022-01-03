@@ -21,9 +21,8 @@ router
 
 router.get('/getUser', (req, res) => {
     console.log(req.user);
-    res.send(req.user);
+    res.send('Hello');
 });
-
 
 
 module.exports = router;
