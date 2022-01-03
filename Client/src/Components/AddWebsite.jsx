@@ -18,7 +18,7 @@ function AddWebsite() {
         }
 
         addWebsite(newWebsite);
-
+        window.location.reload();
         setWebsiteName('');
         setURL('');
 

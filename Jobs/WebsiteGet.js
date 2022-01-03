@@ -45,7 +45,7 @@ async function getURLS(url) {
     const URLs = []
     try {
         const response = await axios.get(url);        
-        const data = response.data.data;
+        const data = response.data.data.websites;
         data.forEach(element => {
             URLs.push(element)
         });
@@ -57,8 +57,9 @@ async function getURLS(url) {
 
 }
 
-getURLS(process.env.URL + '/api/websites')
+getURLS(process.env.URL + '/api/websites/all')
     .then(response => getWebsiteData(response))
-    .catch((err) => console.log(err));
+
+    .catch((err) => console.log(err.data));
     // refresh
       

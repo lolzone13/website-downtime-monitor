@@ -1,18 +1,11 @@
-const User = require('../Models/database-models');
-
-
-exports.loginGet = async (req, res, next) => {
-    try {
-        res.send('Logging in with google');
-    } catch (error) {
-        console.log(error);
-    }
-}
+const passport = require('passport');
+const passportConfig = require('../config/passportConfig')(passport);
 
 
 exports.logoutGet = async (req, res, next) => {
     try {
-        res.send('Logging out');
+        req.logout();
+        res.redirect('http://localhost:3000/login');
     } catch (error) {
         console.log(error);
     }
@@ -20,8 +13,18 @@ exports.logoutGet = async (req, res, next) => {
 
 exports.googleCallback = async (req, res, next) => {
     try {
-        
-        res.redirect('http://localhost:3000');
+        console.log(req.user, "Hello");
+        if (!req.user) res.redirect('http://localhost:3000/login');
+        else res.redirect('http://localhost:3000/home');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.getUser = async (req, res, next) => {
+    try {
+
+        res.send(req.user);
     } catch (error) {
         console.log(error);
     }
