@@ -5,14 +5,13 @@ import StatusBar from './Components/StatusBar';
 import WebsiteList from './Components/WebsiteList';
 import AddWebsite from './Components/AddWebsite';
 import { GlobalProvider } from './Context/GlobalState';
-import { loginContext } from './Context/LoginContext';
-import LoginContext from './Context/LoginContext';
-import { Link } from 'react-router-dom';
+import { LoginContext, LoginProvider } from './Context/LoginContext';
+
 // src https://status.uptimerobot.com/
 function App() {
 
-	const userObject = useContext(loginContext);
-	console.log(userObject);
+
+
 	window.setTimeout(function () {
 		window.location.reload();
 	}, 900000);
@@ -21,15 +20,18 @@ function App() {
 
 	return (
 		<div>
-			<GlobalProvider>
-				<Header />
-				<Link to="/login">Logout</Link>
-				<a href='http://localhost:5000/auth/logout'>Logout</a>
-				<StatusBar />
-				<br />
-				<WebsiteList />
-				<AddWebsite />
-			</GlobalProvider>
+			<LoginProvider>
+				<GlobalProvider>
+
+					<Header />
+					<a href='http://localhost:5000/auth/logout'>Logout</a>
+					<StatusBar />
+					<br />
+					<WebsiteList />
+					<AddWebsite />
+
+				</GlobalProvider>
+			</LoginProvider>
 		</div>
 	);
 }

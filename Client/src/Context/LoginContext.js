@@ -1,9 +1,9 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from 'axios'
 
-export const loginContext = createContext({});
+export const LoginContext = createContext({});
 
-export default function LoginContext({ children }) {
+export const LoginProvider = ({ children }) => {
 
     const [userObject, setUserObject] = useState({});
 
@@ -11,16 +11,17 @@ export default function LoginContext({ children }) {
         axios.get('http://localhost:5000/auth/getUser', { withCredentials: true })
         .then((res) => {
             if (res.data) {
-                console.log(res);
+                console.log(res.data);
                 setUserObject(res.data);
             }
             else console.log('ERROR fetching data from backend');
         })
 
-    }, [])
+    }, []);
+    console.log(userObject);
     return (
-        <loginContext.Provider value={userObject}>
+        <LoginContext.Provider value={userObject}>
             { children }
-        </loginContext.Provider>
+        </LoginContext.Provider>
     )
 }

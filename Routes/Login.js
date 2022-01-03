@@ -19,10 +19,8 @@ router
     .route('/logout')
     .get(logoutGet);
 
-router.get('/getUser', (req, res) => {
-    console.log(req.user);
-    res.send('Hello');
-});
-
+router
+    .route('/getUser')
+    .get(getUser);
 
 module.exports = router;

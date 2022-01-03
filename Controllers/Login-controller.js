@@ -20,3 +20,12 @@ exports.googleCallback = async (req, res, next) => {
         console.log(error);
     }
 }
+
+exports.getUser = async (req, res, next) => {
+    try {
+
+        res.send(req.user);
+    } catch (error) {
+        console.log(error);
+    }
+}
