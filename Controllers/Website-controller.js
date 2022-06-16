@@ -36,7 +36,10 @@ exports.deleteWebsite = async (req, res, next) => {
         const userDetails = await UserModel.findById(req.user._id);
         
         const websiteList = userDetails.websites;
-        const newWebsiteList = websiteList.filter(item => String(item._id) !== req.params.id);
+        const newWebsiteList = websiteList.filter((item) => {
+            
+            return String(item._id) !== req.params.id;
+        }); 
 
         if (newWebsiteList.length === websiteList.length) {
             return res.status(404).json({
@@ -46,6 +49,7 @@ exports.deleteWebsite = async (req, res, next) => {
         }
 
         else {
+            
             await UserModel.findByIdAndUpdate(req.user._id, { websites: newWebsiteList });
 
             return res.status(200).json({
@@ -54,6 +58,7 @@ exports.deleteWebsite = async (req, res, next) => {
             })
         }       
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             success: false,
             error: error

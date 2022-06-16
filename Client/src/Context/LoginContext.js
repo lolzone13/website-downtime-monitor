@@ -11,7 +11,7 @@ export const LoginProvider = ({ children }) => {
         axios.get('http://localhost:5000/auth/getUser', { withCredentials: true })
         .then((res) => {
             if (res.data) {
-                
+                //console.log(res.data);
                 setUserObject(res.data);
             }
             else {

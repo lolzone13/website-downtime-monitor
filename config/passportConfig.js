@@ -37,9 +37,6 @@ module.exports = (passport) => {
 					
 					done(null, newUser);
 				});
-
-
-
 			}
 		})
 

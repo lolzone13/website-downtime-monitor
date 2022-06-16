@@ -8,13 +8,12 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const connectDB = require('./config/db');
-
+const helmet = require('helmet');
 
 dotenv.config({ path: './config/config.env' });
 
 
 const PORT = process.env.PORT || 5000;
-
 const app = express();
 
 
@@ -27,7 +26,7 @@ app.use(
         credentials: true,
     })
 );
-
+app.use(helmet());
 app.use(cookieParser());
 app.use(session({
     secret: process.env.EXPRESS_SESSION_KEY,
@@ -69,6 +68,6 @@ bree.start();
 
 
 app.listen(PORT, () => {
-    console.log(` Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.blue.italic.bold);
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.blue.italic.bold);
 })
 
