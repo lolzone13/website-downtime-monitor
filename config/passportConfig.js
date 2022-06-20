@@ -24,6 +24,7 @@ module.exports = (passport) => {
 		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 		callbackURL: "http://localhost:5000/auth/google/callback",
 	}, (accessToken, refreshToken, profile, done) => {
+		
 		Userd.findOne({ googleID: profile.id }).then((existingUser) => {
 			if (existingUser) {
 			
@@ -32,7 +33,8 @@ module.exports = (passport) => {
 			else {
 				new Userd({
 					username: profile.displayName,
-					googleID: profile.id
+					googleID: profile.id,
+					email: profile.emails[0].value
 				}).save().then((newUser) => {
 					
 					done(null, newUser);

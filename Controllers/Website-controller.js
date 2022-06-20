@@ -14,7 +14,8 @@ exports.getWebsites = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             count: userDetails.websites.length,
-            data: userDetails.websites
+            data: userDetails.websites,
+                     
         });
     } catch (error) {
         return res.status(500).json({
