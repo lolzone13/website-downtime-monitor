@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const passportLocalMongoose = require("passport-local-mongoose");
+//const passportLocalMongoose = require("passport-local-mongoose");
 
 
 const websiteSchema = new mongoose.Schema({
@@ -33,6 +33,11 @@ websiteSchema.path('status').validate((val) => {
     return statusRegex.test(val);
 }, 'Invalid Status');
 
+// websiteSchema.path('createdBy').validate((val) => {
+//     emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//     return emailRegex.test(val);
+// }, 'Invalid Email');
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -56,7 +61,13 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
-userSchema.plugin(passportLocalMongoose);
+userSchema.path('email').validate((val) => {
+    emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(val);
+}, 'Invalid Email');
+
+
+//userSchema.plugin(passportLocalMongoose);
 
 module.exports = {
     Website: mongoose.models.Website || mongoose.model('Website', websiteSchema),
