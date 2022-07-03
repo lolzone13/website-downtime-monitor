@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function LoginPage() {
   const googleLogin = () => {
-    window.open(process.env.REACT_APP_SERVER_URL + '/auth/google', '_self');
+    window.open('https://blooming-wildwood-82432.herokuapp.com/' + '/auth/google', '_self');
   }
 
 

@@ -8,7 +8,7 @@ export const LoginProvider = ({ children }) => {
     const [userObject, setUserObject] = useState({});
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_SERVER_URL + '/auth/getUser', { withCredentials: true })
+        axios.get('https://blooming-wildwood-82432.herokuapp.com/' + '/auth/getUser', { withCredentials: true })
         .then((res) => {
             if (res.data) {
                 //console.log(res.data);
