@@ -8,7 +8,7 @@ export const LoginProvider = ({ children }) => {
     const [userObject, setUserObject] = useState({});
 
     useEffect(() => {
-        axios.get('http://localhost:5000/auth/getUser', { withCredentials: true })
+        axios.get(process.env.REACT_APP_SERVER_URL + '/auth/getUser', { withCredentials: true })
         .then((res) => {
             if (res.data) {
                 //console.log(res.data);

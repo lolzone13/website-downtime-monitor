@@ -25,7 +25,7 @@ function WebsiteComponents() {
     else return (
         <div>
             <Header />
-            <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href='http://localhost:5000/auth/logout'>Logout</a>
+            <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href= {process.env.REACT_APP_SERVER_URL + '/auth/logout'}>Logout</a>
             <StatusBar />
             <br />
             <WebsiteList />

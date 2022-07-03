@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
     cors({
-        origin: "http://localhost:3000", // <-- location of the react app were connecting to
+        origin: process.env.CLIENT_URL, // <-- location of the react app were connecting to
         credentials: true,
     })
 );
@@ -59,7 +59,7 @@ const bree = new Bree({
     jobs: [
         {
             name: 'WebsiteGet',
-            interval: '20s'
+            interval: '900s'
         }
     ]
 });
