@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "backend for the downtime monitor",
   "engines": {
-    "node": "14.x"
+    "node": "14.x",
+    "npm": "8.6.0"
   },
   "main": "server.js",
   "scripts": {
