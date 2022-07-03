@@ -6,7 +6,7 @@ const ef = require('../Utils/emailformat');
 dotenv.config({ path: '../config/config.env' });
 
 async function sendMail(userEmail, userDetails) {
-    console.log(userEmail);
+
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -15,17 +15,17 @@ async function sendMail(userEmail, userDetails) {
             pass: process.env.MAIL_APP_PASSWORD
         }
     });
-    //ef.emailFormat(userDetails);
-    //console.log('hello', userDetails)
-    // let info = await transporter.sendMail({
-    //     from: '"Website-Downtime-Monitor" <website-downtime@mail.com>', // sender address
-    //     to: '', // list of receivers
-    //     subject: "Hello, some of your websites might be down!", // Subject line
-    //     text: "Hello, some of your websites might be down! ", // plain text body
-    //     html: `<b>Website <a href=${userDetails.url}>${userDetails.name}</a> is down! </b>`, // html body
-    // });
+    const htmlBody = ef.emailFormat(userDetails);
 
-    // console.log("Message sent: %s", info.messageId);
+    let info = transporter.sendMail({
+        from: '"Website-Downtime-Monitor" <website-downtime@mail.com>', // sender address
+        to: userEmail, // list of receivers
+        subject: "Hello, some of your websites might be down!", // Subject line
+        text: "Hello, some of your websites might be down! ", // plain text body
+        html: htmlBody, // html body
+    });
+
+    console.log("Message sent: %s", info.messageId);
 
 
 
@@ -90,8 +90,7 @@ async function getURLS(url) {
 
         });
 
-
-        return [URLs, response.data.email];
+        return [URLs, response.data.data[0].email];
     } catch (error) {
         console.log(error);
     }
@@ -100,6 +99,5 @@ async function getURLS(url) {
 
 getURLS(process.env.URL + '/api/websites/all')
     .then(response => getWebsiteData(response[0], response[1]))
-
     .catch((err) => console.log(err.data));
     // refresh

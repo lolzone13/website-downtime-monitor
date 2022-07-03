@@ -19,7 +19,7 @@ function StatusBar() {
 
     return (
         <div className='text-center'>
-            <h2 className={(status===working) ? 'text-3xl text-green-600' : 'text-3xl-red-600'}> { status } </h2>
+            <h2 className={(status===working) ? 'text-3xl text-green-600' : 'text-3xl text-red-600'}> { status } </h2>
         </div>
     )
 }
