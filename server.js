@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const connectDB = require('./config/db');
 const helmet = require('helmet');
+const path = require('path');
 
 dotenv.config({ path: './config/config.env' });
 
@@ -65,6 +66,13 @@ const bree = new Bree({
 });
 bree.start();
 
+// serve static assets
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    })
+}
 
 
 app.listen(PORT, () => {

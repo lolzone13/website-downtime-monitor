@@ -15,6 +15,7 @@ async function sendMail(userEmail, userDetails) {
             pass: process.env.MAIL_APP_PASSWORD
         }
     });
+    const newObj = {...userDetails, email: userEmail};
     const htmlBody = ef.emailFormat(userDetails);
 
     let info = transporter.sendMail({

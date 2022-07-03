@@ -821,7 +821,7 @@ exports.emailFormat = function (userDetails) {
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td class="esd-block-text es-p40t es-p10b es-p40r es-p40l" align="left" bgcolor="transparent">
-                                                                                            <p style="color: #999999;">Hello username,</p>
+                                                                                            <p style="color: #999999;">Hello ${userDetails.email},</p>
                                                                                             <p style="color: #999999;"><br></p>
                                                                                             <p style="color: #999999;">The following websites are down!</p>
                                                                                             <p style="color: #999999;"><a href=${userDetails.url}> ${userDetails.name} </a></p>
