@@ -2,6 +2,9 @@
   "name": "website-downtime-monitor",
   "version": "1.0.0",
   "description": "backend for the downtime monitor",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
