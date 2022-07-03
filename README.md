@@ -1,7 +1,7 @@
 
 # Website Downtime Monitor
 
-A simple website downtime monitoring application with alerts and uptime reports!
+A website downtime monitoring application with alerts and uptime reports!
 
 
 ## Badges
