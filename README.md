@@ -81,8 +81,15 @@ A website downtime monitoring application with alerts and uptime reports!
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+### Sign-In Page
+![Sign-In Page](https://github.com/lolzone13/website-downtime-monitor/blob/main/screenshots/sign-in-page.png)
+
+### Home Page (Websites Down!)
+![Home Page](https://github.com/lolzone13/website-downtime-monitor/blob/main/screenshots/homepage.png)
+
+### Home Page (All Websites Up!)
+![all-clear homepage](https://github.com/lolzone13/website-downtime-monitor/blob/main/screenshots/success-homepage.png)
+
+### Email Response
+![Email Response](https://github.com/lolzone13/website-downtime-monitor/blob/main/screenshots/email-response.png)
 
