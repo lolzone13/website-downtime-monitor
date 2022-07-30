@@ -1,7 +1,7 @@
 
 # Website Downtime Monitor
 
-A simple website downtime monitoring application with alerts and uptime reports!
+A website downtime monitoring application with alerts and uptime reports!
 
 
 ## Badges
@@ -66,10 +66,10 @@ A simple website downtime monitoring application with alerts and uptime reports!
 
 ## Features
 
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
+- Authentication with Google OAuth2 and Passport.js
+- Monitors and updates the status of websites every 15 minutes.
+- Provides email reports whenever there is a change in the website status.
+
 
 
 ## Tech Stack
@@ -79,11 +79,10 @@ A simple website downtime monitoring application with alerts and uptime reports!
 **Server:** Node, Express, MongoDB, Passport.js, Nodemailer
 
 
-## Contributing
+## Screenshots
 
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-Please adhere to this project's `code of conduct`.
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
